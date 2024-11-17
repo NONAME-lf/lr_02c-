@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="Library.xsl"?>
+<library>
+    <book id="1" genre="Science" language="English">
+        <author>John Doe</author>
+        <title>Physics Simplified</title>
+        <annotation>An introductory guide to physics.</annotation>
+        <qualification>Beginner</qualification>
+        <reader>
+            <name>Jane Smith</name>
+            <faculty>Science</faculty>
+            <department>Physics</department>
+            <position>Student</position>
+        </reader>
+    </book>
+    <book id="2" genre="Literature">
+        <author>Mary Johnson</author>
+        <title>Classic Poems</title>
+        <annotation>A collection of timeless poems.</annotation>
+        <qualification>Advanced</qualification>
+        <reader>
+            <name>Mark Brown</name>
+            <faculty>Arts</faculty>
+            <department>Literature</department>
+            <position>Professor</position>
+        </reader>
+    </book>
+    <book id="3">
+        <author>Alexandra Green</author>
+        <title>Modern Architecture</title>
+        <annotation>Exploring contemporary architectural designs.</annotation>
+        <qualification>Intermediate</qualification>
+        <reader>
+            <name>Tom White</name>
+            <faculty>Engineering</faculty>
+            <department>Architecture</department>
+            <position>Lecturer</position>
+        </reader>
+    </book>
+</library>
