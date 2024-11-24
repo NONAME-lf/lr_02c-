@@ -2,7 +2,7 @@
 using System.Xml.Linq;
 using System.Xml.Xsl;
 using System.Collections.Generic;
-using LibraryApp.Services; // Простір імен для аналізаторів.
+using LibraryApp.Services; // Простір імен аналізаторів
 
 namespace LibraryApp;
 

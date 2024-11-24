@@ -1,11 +1,9 @@
-﻿using System.Xml.Xsl;
+﻿using System;
+using System.IO;
+using System.Xml.Xsl;
 using MauiApp1;
 
 namespace LibraryApp;
-
-using System;
-using System.IO;
-using System.Xml.Xsl;
 
 public class XmlToHtmlTransformer
 {
