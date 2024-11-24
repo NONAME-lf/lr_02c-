@@ -4,12 +4,15 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:MauiApp1"
+    xmlns:libraryProcessing="using:LibraryProcessing"
+    xmlns:departmentLibrary="using:DepartmentLibrary"
+    xmlns:libraryApp="using:LibraryApp"
     Shell.FlyoutBehavior="Disabled"
     Title="MauiApp1">
 
     <ShellContent
         Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
+        ContentTemplate="{DataTemplate libraryApp:MainPage}"
         Route="MainPage" />
 
 </Shell>

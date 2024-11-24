@@ -178,3 +178,4 @@ C:\Users\bigsh\Documents\.c#\jettbrains\MauiApp1\MauiApp1\obj\Debug\net8.0-windo
 C:\Users\bigsh\Documents\.c#\jettbrains\MauiApp1\MauiApp1\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\MultipleQualifiersPerDimensionFound.txt
 C:\Users\bigsh\Documents\.c#\jettbrains\MauiApp1\MauiApp1\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\ProjectArchitectures.txt
 C:\Users\bigsh\Documents\.c#\jettbrains\MauiApp1\MauiApp1\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\CommunityToolkit.Mvvm.dll
+C:\Users\bigsh\Documents\.c#\jettbrains\MauiApp1\MauiApp1\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\MauiApp1.sourcelink.json

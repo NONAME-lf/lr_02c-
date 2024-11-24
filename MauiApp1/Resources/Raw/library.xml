@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="Library.xsl"?>
+<?xml-stylesheet type="text/xsl" href="library.xsl"?>
 <library>
-    <book id="1" genre="Science" language="English">
+    <book>
         <author>John Doe</author>
         <title>Physics Simplified</title>
         <annotation>An introductory guide to physics.</annotation>
@@ -13,7 +13,7 @@
             <position>Student</position>
         </reader>
     </book>
-    <book id="2" genre="Literature">
+    <book>
         <author>Mary Johnson</author>
         <title>Classic Poems</title>
         <annotation>A collection of timeless poems.</annotation>
@@ -25,7 +25,7 @@
             <position>Professor</position>
         </reader>
     </book>
-    <book id="3">
+    <book>
         <author>Alexandra Green</author>
         <title>Modern Architecture</title>
         <annotation>Exploring contemporary architectural designs.</annotation>

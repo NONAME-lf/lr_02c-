@@ -1,103 +1,111 @@
-﻿using System.Xml;
+﻿using Microsoft.Maui.Controls;
 using System.Xml.Linq;
 using System.Xml.Xsl;
+using System.Collections.Generic;
+using LibraryApp.Services; // Простір імен для аналізаторів.
 
-namespace MauiApp1;
+namespace LibraryApp;
 
 public partial class MainPage : ContentPage
 {
-    private string _xmlPath = "C:\\Users\\bigsh\\Documents\\.c#\\jettbrains\\MauiApp1\\MauiApp1\\library.xml";
-    private string _xslPath = "C:\\Users\\bigsh\\Documents\\.c#\\jettbrains\\MauiApp1\\MauiApp1\\library.xsl";
-    private string _outputHtmlPath = Path.Combine(AppContext.BaseDirectory, "library.html");
+    private IXmlAnalyzer _analyzer;
+    private string xmlFilePath;
+
     public MainPage()
     {
         InitializeComponent();
+        analyzerPicker.SelectedIndexChanged += OnAnalyzerSelected;
     }
 
-    private void OnLoadXmlClicked(object sender, EventArgs e)
+    private async void OnLoadXmlClicked(object sender, EventArgs e)
     {
-        if (File.Exists(_xmlPath))
+        var file = await FilePicker.Default.PickAsync();
+        if (!file.FileName.EndsWith(".xml", StringComparison.OrdinalIgnoreCase))
         {
-            OutputLabel.Text = "XML file loaded successfully: " + _xmlPath;
+            await DisplayAlert("Помилка", "Будь ласка, оберіть файл формату XML.", "OK");
+            return;
         }
-        else
+        else if (file != null)
         {
-            OutputLabel.Text = "XML file not found. Please ensure it exists.";
+            xmlFilePath = file.FullPath;
+            await DisplayAlert("File Loaded", $"Loaded file: {file.FileName}", "OK");
         }
     }
 
-    private void OnAnalyzeClicked(object sender, EventArgs e)
+    private void OnAnalyzerSelected(object sender, EventArgs e)
     {
-        try
+        switch (analyzerPicker.SelectedIndex)
         {
-            if (AnalysisPicker.SelectedItem == null)
-            {
-                OutputLabel.Text = "Please select an analysis method.";
-                return;
-            }
-
-            if (!File.Exists(_xmlPath))
-            {
-                OutputLabel.Text = "XML file not found. Please load a valid file.";
-                return;
-            }
-
-            string method = AnalysisPicker.SelectedItem.ToString();
-            string result;
-
-            switch (method)
-            {
-                case "SAX":
-                    var saxAnalyzer = new SaxAnalyzer();
-                    result = saxAnalyzer.Analyze(_xmlPath);
-                    break;
-
-                case "DOM":
-                    var domAnalyzer = new DomAnalyzer();
-                    result = domAnalyzer.Analyze(_xmlPath);
-                    break;
-
-                case "LINQ":
-                    var linqAnalyzer = new LinqAnalyzer();
-                    result = linqAnalyzer.Analyze(_xmlPath);
-                    break;
-
-                default:
-                    result = "Unknown method selected.";
-                    break;
-            }
-
-            OutputLabel.Text = result;
-        }
-        catch (Exception ex)
-        {
-            OutputLabel.Text = $"Error during analysis: {ex.Message}";
+            case 0:
+                _analyzer = new SAXAnalyzer();
+                break;
+            case 1:
+                _analyzer = new DOMAnalyzer();
+                break;
+            case 2:
+                _analyzer = new LINQAnalyzer();
+                break;
         }
     }
 
-    private void OnTransformClicked(object sender, EventArgs e)
+    
+    private async void AnalyzeButton_Clicked(object sender, EventArgs e)
     {
-        try
+        if (_analyzer == null)
         {
-            if (!File.Exists(_xmlPath) || !File.Exists(_xslPath))
-            {
-                OutputLabel.Text = "Required files (XML or XSL) not found. Please check and try again.";
-                return;
-            }
+            await DisplayAlert("Error", "Please select an analysis method.", "OK");
+            return;
+        }
 
-            var transformer = new XsltTransformer();
-            transformer.Transform(_xmlPath, _xslPath, _outputHtmlPath);
-            OutputLabel.Text = "Transformation completed. HTML saved at " + _outputHtmlPath;
-        }
-        catch (Exception ex)
+        if (string.IsNullOrEmpty(xmlFilePath))
         {
-            OutputLabel.Text = $"Error during transformation: {ex.Message}";
+            await DisplayAlert("Error", "Please load an XML file first.", "OK");
+            return;
         }
+
+        string keyword = keywordEntry.Text?.Trim();
+        if (string.IsNullOrEmpty(keyword))
+        {
+            await DisplayAlert("Error", "Please enter a keyword to search.", "OK");
+            return;
+        }
+
+        var results = new List<string>();
+        _analyzer.Analyze(xmlFilePath, keyword, results);
+
+        resultsEditor.Text = results.Count > 0
+            ? string.Join("\n", results)
+            : "No results found for the given keyword.";
     }
+
+
+
+    private void TransformButton_Clicked(object sender, EventArgs e)
+        {
+        string xmlPath = Path.Combine(FileSystem.Current.AppDataDirectory, "Data", "library.xml");
+        string xslPath = Path.Combine(FileSystem.Current.AppDataDirectory, "Data", "library.xsl");
+        string outputPath = Path.Combine(FileSystem.Current.AppDataDirectory, "output.html");
+
+        XmlToHtmlTransformer transformer = new XmlToHtmlTransformer();
+        transformer.TransformToHtml(xmlPath, xslPath, outputPath);
+    }
+
 
     private void OnClearClicked(object sender, EventArgs e)
     {
-        OutputLabel.Text = "Results cleared.";
-        AnalysisPicker.SelectedIndex = -1;
+        keywordEntry.Text = string.Empty;
+        resultsEditor.Text = string.Empty;
+    }
+    
+    private void OnExitButtonPressed(object sender, EventArgs e)
+    {
+        Device.BeginInvokeOnMainThread(async () =>
+        {
+            bool exit = await DisplayAlert("Exit", "Are you sure you want to exit?", "Yes", "No");
+            if (exit)
+            {
+                Application.Current.Quit();
+            }
+        });
     }
 }

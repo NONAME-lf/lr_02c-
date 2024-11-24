@@ -1,24 +1,41 @@
 ﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MauiApp1.MainPage">
-    <VerticalStackLayout Padding="20" Spacing="10">
-        <Button Text="Load XML File" Clicked="OnLoadXmlClicked" />
+             x:Class="LibraryApp.MainPage">
+<ScrollView>
+    <VerticalStackLayout Padding="20" Spacing="20">
+        <Label Text="Library XML Analyzer"
+               FontSize="24"
+               HorizontalOptions="Center" />
 
-        <Label Text="Select Analysis Method:" />
-        <Picker x:Name="AnalysisPicker" Title="Choose Method">
-            <Picker.ItemsSource>
-                <x:Array Type="{x:Type x:String}">
-                    <x:String>SAX</x:String>
-                    <x:String>DOM</x:String>
-                    <x:String>LINQ</x:String>
-                </x:Array>
-            </Picker.ItemsSource>
+        <Button Text="Load XML File"
+                Clicked="OnLoadXmlClicked" />
+
+        <Picker x:Name="analyzerPicker"
+                Title="Select Analysis Method">
+            <Picker.Items>
+                <x:String>SAX</x:String>
+                <x:String>DOM</x:String>
+                <x:String>LINQ to XML</x:String>
+            </Picker.Items>
         </Picker>
 
-        <Button Text="Analyze" Clicked="OnAnalyzeClicked" />
-        <Button Text="Transform to HTML" Clicked="OnTransformClicked" />
-        <Button Text="Clear" Clicked="OnClearClicked" />
+        <Entry x:Name="keywordEntry"
+               Placeholder="Enter keyword for search"
+               Keyboard="Text" />
 
-        <Label x:Name="OutputLabel" Text="Results will appear here..." />
+        <Button Text="Analyze"
+                Clicked="AnalyzeButton_Clicked" />
+
+        <Editor x:Name="resultsEditor"
+                IsReadOnly="True"
+                HeightRequest="200" />
+
+        <Button Text="Transform to HTML"
+                Clicked="TransformButton_Clicked" />
+
+        <Button Text="Clear"
+                Clicked="OnClearClicked" />
+        <Button Text="Exit" Clicked="OnExitButtonPressed"/>
     </VerticalStackLayout>
+</ScrollView>
 </ContentPage>
