@@ -15,7 +15,7 @@
             <Picker.Items>
                 <x:String>SAX</x:String>
                 <x:String>DOM</x:String>
-                <x:String>LINQ to XML</x:String>
+                <x:String>LINQ</x:String>
             </Picker.Items>
         </Picker>
 

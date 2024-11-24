@@ -36,9 +36,9 @@ public class SAXAnalyzer : IXmlAnalyzer
                     }
                     else if (isBookStarted)
                     {
-                        // Накопичуємо деталі книги
+                        // Накопичуємо деталі книги й переходимо до вмісту
                         string elementName = reader.Name;
-                        reader.Read(); // Переходимо до вмісту
+                        reader.Read();
                         if (reader.NodeType == XmlNodeType.Text)
                         {
                             currentDetails += $"{elementName}: {reader.Value}, ";

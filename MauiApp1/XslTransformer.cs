@@ -16,12 +16,12 @@ public class XmlToHtmlTransformer
             // Перевірка наявності файлів
             if (!File.Exists(xmlFilePath))
             {
-                throw new FileNotFoundException($"XML файл не знайдено: {xmlFilePath}");
+                throw new FileNotFoundException($"XML file not found: {xmlFilePath}");
             }
 
             if (!File.Exists(xslFilePath))
             {
-                throw new FileNotFoundException($"XSL файл не знайдено: {xslFilePath}");
+                throw new FileNotFoundException($"XSL file not found: {xslFilePath}");
             }
 
             // Виконання трансформації
@@ -30,12 +30,12 @@ public class XmlToHtmlTransformer
             xslTransform.Transform(xmlFilePath, outputHtmlPath); // Трансформація у HTML
 
             // Підтвердження завершення
-            App.Current.MainPage.DisplayAlert("Успіх", $"Файл перетворено в HTML: {outputHtmlPath}", "OK");
+            App.Current.MainPage.DisplayAlert("Success", $"File transformed into HTML: {outputHtmlPath}", "OK");
         }
         catch (Exception ex)
         {
             // Відображення помилки
-            App.Current.MainPage.DisplayAlert("Помилка", $"Під час трансформації виникла помилка: {ex.Message}", "OK");
+            App.Current.MainPage.DisplayAlert("Error", $"During the transformation occured error: {ex.Message}", "OK");
         }
     }
 }

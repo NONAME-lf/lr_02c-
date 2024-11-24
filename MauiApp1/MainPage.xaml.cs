@@ -22,10 +22,10 @@ public partial class MainPage : ContentPage
         var file = await FilePicker.Default.PickAsync();
         if (!file.FileName.EndsWith(".xml", StringComparison.OrdinalIgnoreCase))
         {
-            await DisplayAlert("Помилка", "Будь ласка, оберіть файл формату XML.", "OK");
+            await DisplayAlert("Error", "Please, choose file of XML format.", "OK");
             return;
         }
-        else if (file != null)
+        if (file != null)
         {
             xmlFilePath = file.FullPath;
             await DisplayAlert("File Loaded", $"Loaded file: {file.FileName}", "OK");

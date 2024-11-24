@@ -29,7 +29,7 @@
     <AppXManifest Include="C:\Users\bigsh\Documents\.c#\jettbrains\MauiApp1\MauiApp1\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2024-11-24T08:15:36.466</Modified>
+      <Modified>2024-11-24T15:11:10.215</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
@@ -43,11 +43,11 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\bigsh\Documents\.c#\jettbrains\MauiApp1\MauiApp1\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\MauiApp1.dll">
       <PackagePath>MauiApp1.dll</PackagePath>
-      <Modified>2024-11-24T08:15:35.811</Modified>
+      <Modified>2024-11-24T15:11:09.513</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\bigsh\Documents\.c#\jettbrains\MauiApp1\MauiApp1\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\apphost.exe">
       <PackagePath>MauiApp1.exe</PackagePath>
-      <Modified>2024-11-24T08:15:35.852</Modified>
+      <Modified>2024-11-24T15:11:09.530</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\bigsh\Documents\.c#\jettbrains\MauiApp1\MauiApp1\Resources\Raw\AboutAssets.txt">
       <PackagePath>AboutAssets.txt</PackagePath>
